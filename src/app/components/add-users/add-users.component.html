@@ -1,0 +1,80 @@
+
+<!-- <div class="card card-body"> -->
+
+
+<form class="row" (ngSubmit)="onSubmit()" [formGroup]="registerForm" novalidate>
+  <div class="mb-3 col-lg-6 col-md-12 col-12">
+    <label for="name" class="form-label register_form-label">Name</label>
+    <input type="text" class="form-control registerform_control" autocomplete="off" id="name" formControlName="name">
+
+    <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="text-danger mt-1">
+      Name is required.
+    </div>
+
+  </div>
+
+  <div class="mb-3 col-lg-6 col-md-12 col-12">
+    <label for="email" class="form-label register_form-label">Email</label>
+    <input type="email" class="form-control registerform_control" autocomplete="off" id="email" formControlName="email">
+    <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-danger mt-1">
+      <div *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</div>
+      <div *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid email.</div>
+    </div>
+
+  </div>
+
+  <div class="mb-3 col-lg-6 col-md-12 col-12">
+    <label for="Password" class="form-label register_form-label" >Password</label>
+    <input type="password" class="form-control registerform_control" autocomplete="off" [readOnly]="isEditMode" [disabled]="isEditMode"  [style.cursor]="isEditMode ? 'default' : 'text'"  id="password" formControlName="password">
+
+    <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid && !isEditMode" class="text-danger mt-1">
+      <div *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</div>
+      <div *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 3 characters.</div>
+    </div>
+  </div>
+
+  <div class="mb-3 col-lg-6 col-md-12 col-12">
+    <label for="confirmPassword" class="form-label register_form-label">Confirm Password</label>
+    <input type="password" class="form-control registerform_control" autocomplete="off" [readOnly]="isEditMode" [disabled]="isEditMode" id="confirmPassword"  [style.cursor]="isEditMode ? 'default' : 'text'"  formControlName="confirmPassword">
+
+    <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid && !isEditMode" class="text-danger mt-1">
+      Confirm password is required.
+    </div>
+    <div *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched" class="text-danger mt-1">
+      Passwords do not match.
+    </div>
+
+  </div>
+
+  <div class="mb-3 col-lg-6 col-md-12 col-12">
+    <label for="phone_number" class="form-label register_form-label">Phone</label>
+    <input type="text" class="form-control registerform_control" autocomplete="off" id="phone_number" formControlName="phone_number">
+
+    <div *ngIf="registerForm.get('phone_number')?.touched && registerForm.get('phone_number')?.invalid" class="text-danger mt-1">
+      <div *ngIf="registerForm.get('phone_number')?.errors?.['required']">Phone number is required.</div>
+      <div *ngIf="registerForm.get('phone_number')?.errors?.['pattern']">Phone must be exactly 10 digits.</div>
+    </div>
+
+
+  </div>
+
+  <div class="mb-3 col-lg-6 col-md-12 col-12">
+    <label for="image" class="form-label register_form-label">Image</label>
+    <!-- <img [src]="image" alt="" width="100%" height="100%" > -->
+    <input type="file" class="form-control registerform_control" autocomplete="off" id="image" (change)="onFileChange($event)">
+
+    <div *ngIf="registerForm.get('image')?.touched && registerForm.get('image')?.invalid" class="text-danger mt-1">
+      Image is required.
+    </div>
+  </div>
+
+  <div class="mb-3 col-lg-12 col-md-12 col-12 text-end">
+
+    <button type="submit" class="btn save-btn w-100" data-bs-dismiss="modal" [disabled]="registerForm.invalid"> {{ isEditMode ? 'Update' : 'Register' }}</button>
+    <!-- <button type="submit" class="btn cancel-btn w-100 mt-2" data-bs-dismiss="modal" > Close</button> -->
+  </div>
+
+</form>
+
+
+<!-- </div> -->

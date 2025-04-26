@@ -1,0 +1,31 @@
+form {
+  padding: 19px;
+  .register_form-label{
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  .registerform_control{
+    border-radius: 11px;
+    border: 1px solid #8ed398;
+    font-size: 13px;
+
+    &:hover {
+      outline: none;
+      box-shadow: none;
+    }
+    &:focus{
+      outline: none;
+      box-shadow: none;
+      border: 1px solid #52915e;
+    }
+  }
+}
+
+.form-control[type=file]:not(:disabled):not([readonly]) {
+  cursor: pointer;
+  font-size: 13px;
+}
+.text-danger{
+  font-size: 11px;
+}
